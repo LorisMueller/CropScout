@@ -1,0 +1,36 @@
+.card {
+    width: 70%;
+    height: 30%;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card .cardText {
+    width: 65%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.card .cardText h2 {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0;
+    font-size: 30px;
+}
+
+.card .cardImage {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .cardImage img {
+    height: 150px;
+}

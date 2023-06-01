@@ -1,0 +1,135 @@
+body {
+    background-color: black;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}
+
+.firstSection {
+    width: 100%;
+    height: calc(100vh - 90px);;
+    background-color: black;
+    display: flex;
+    overflow: hidden;
+}
+
+.firstSection .text {
+    width: 55%;
+    height: 100%;
+    color: white;
+}
+
+.firstSection .text .title {
+    font-size: 60px;
+    margin-top: 18%;
+    margin-left: 15%;
+    width: 70%;
+    text-align: left;
+}
+
+.firstSection .text .description {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 15%;
+    color: #727272;
+    width: 70%;
+    text-align: left;
+}
+
+.firstSection .text .title span {
+    font-weight: bold;
+    color: #137547;
+}
+
+.firstSection .input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.firstSection .input Button {
+    width: 180px;
+    margin-top: 20px;
+    margin-left: 15%;
+}
+
+.firstSection .image {
+    width: 45%;
+    height: 100%;
+    margin-left: -26%;
+}
+
+.firstSection .image img {
+    margin-top: 60px;
+    width: 180%;
+}
+
+.secondSection {
+    width: 100%;
+    height: 130vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.secondSection .title {
+    margin-top: 20px;
+    font-size: 100px;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.secondSection .offers {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.secondSection .offers .card {
+    width: 70%;
+    height: 30%;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.secondSection .offers .card .cardText {
+    width: 65%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.secondSection .offers .card .cardText h2 {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0;
+    font-size: 30px;
+}
+
+.secondSection .offers .card .cardImage {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.secondSection .offers .card .cardImage img {
+    height: 100px;
+}

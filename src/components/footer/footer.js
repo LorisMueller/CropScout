@@ -1,6 +1,6 @@
-function Navbar() {
+function Footer() {
     return (
-      <nav className="navbar">
+      <nav className="footer">
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
@@ -8,4 +8,4 @@ function Navbar() {
     )
   }
 
-export default Navbar;
+export default Footer;
