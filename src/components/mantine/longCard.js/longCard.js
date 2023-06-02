@@ -6,7 +6,7 @@ function LongCard(props) {
         <Card shadow='sm' padding='lg' radius='lg' className='card'>
             <div className='cardText'>
                 <h2>{props.title}</h2>
-                <p>{props.describtion}</p>
+                <p>{props.description}</p>
             </div>
             <div className='cardImage'>
                 <img src={props.image} alt='drone' />

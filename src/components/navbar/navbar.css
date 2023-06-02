@@ -21,6 +21,11 @@ nav {
     align-items: center;
 }
 
+.logo img {
+    margin-right: 10px;
+    width: 35px;
+}
+
 .logo h1 {
     color: white;
     margin: 0;

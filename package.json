@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@mantine/ds": "^6.0.13",
     "react-router-dom": "^6.11.2"
   }
 }
