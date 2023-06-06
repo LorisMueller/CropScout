@@ -1,0 +1,48 @@
+.aboutBody {
+  background-color: white;
+}
+
+.aboutFirstSection {
+  background-color: white;
+  width: 100%;
+  height: calc(110vh - 90px);
+  color: black;
+}
+
+.aboutFirstSection .text .title {
+    font-size: 50px;
+    padding-top: 5%;
+    margin-left: 12%;
+    width: 70%;
+    text-align: left;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+}
+
+.aboutFirstSection .aboutCards {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.aboutSecondSection {
+    width: 100%;
+    height: 50vh;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutSecondSection .text .title {
+    font-size: 50px;
+    padding-top: 12.5%;
+    text-align: left;
+    font-weight: 600;
+}
+
+.aboutSecondSection .text .title span {
+    color: #FF6B00;
+}
