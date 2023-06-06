@@ -146,7 +146,7 @@ import {
             <Textarea
               required
               label="Your message"
-              placeholder="I want to order your goods"
+              placeholder="I want a whole Overview and detailed Analysis of my Farm"
               minRows={4}
               mt="md"
               classNames={{ input: classes.input, label: classes.inputLabel }}

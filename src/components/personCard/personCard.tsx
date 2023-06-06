@@ -1,4 +1,4 @@
-import { IconHeart } from '@tabler/icons-react';
+import { IconUserStar } from '@tabler/icons-react';
 import React from 'react';
 import {
   Card,
@@ -6,29 +6,58 @@ import {
   Text,
   Group,
   Badge,
-  Button,
-  ActionIcon,
   createStyles,
   rem,
 } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    width: 320,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    margin: 'auto',
+    marginTop: theme.spacing.md,
+    width: 460,
+    //backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    backgroundColor: '#F5F5F5',
+  },
+
+  cardImage: {
+    marginRight: theme.spacing.lg,
+    marginLeft: theme.spacing.lg,
+  },
+
+  cardTitle: {
+    marginRight: theme.spacing.md,
+    marginTop: theme.spacing.md,
+  },
+
+  textTitle: {
+    fontSize: '25px',
+    fontFamily: 'Lexend',
   },
 
   section: {
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
+    borderBottom: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+      }`,
     paddingLeft: theme.spacing.md,
     paddingRight: theme.spacing.md,
     paddingBottom: theme.spacing.md,
   },
 
+  textDescription: {
+    fontSize: '15px',
+    fontFamily: 'Lexend',
+    fontWeight: 300,
+    marginTop: theme.spacing.xl,
+    marginBottom: theme.spacing.md,
+    marginLeft: theme.spacing.md,
+  },
+
   like: {
     color: theme.colors.red[6],
+  },
+
+  color: {
+    backgroundColor: '#1375477c',
+    color: '#137547'
   },
 
   label: {
@@ -63,19 +92,21 @@ export function BadgeCard({ image, title, description, country, badges }: BadgeC
   ));
 
   return (
-    <Card withBorder radius="md" p="md" className={classes.card}>
-      <Card.Section>
-        <Image src={image} alt={title} height={180} />
-      </Card.Section>
-
+    <Card radius="md" p="md" className={classes.card}>
+      <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+      <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+      <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet"></link>
       <Card.Section className={classes.section} mt="md">
-        <Group position="apart">
-          <Text fz="lg" fw={500}>
-            {title}
-          </Text>
-          <Badge size="sm">{country}</Badge>
+        <Group>
+          <Image src={image} alt={title} width={120} className={classes.cardImage} />
+          <Card.Section className={classes.cardTitle}>
+            <Badge size="lg" className={classes.color}>{country}</Badge>
+            <Text fw={500} className={classes.textTitle}>
+              {title}
+            </Text>
+          </Card.Section>
         </Group>
-        <Text fz="sm" mt="xs">
+        <Text className={classes.textDescription} mt="xs">
           {description}
         </Text>
       </Card.Section>
@@ -87,15 +118,6 @@ export function BadgeCard({ image, title, description, country, badges }: BadgeC
           {features}
         </Group>
       </Card.Section>
-
-      <Group mt="xs">
-        <Button radius="md" style={{ flex: 1 }} color="dark">
-          Get in Contact
-        </Button>
-        <ActionIcon variant="default" radius="md" size={36}>
-          <IconHeart size="1.1rem" className={classes.like} stroke={1.5} />
-        </ActionIcon>
-      </Group>
     </Card>
   );
 }

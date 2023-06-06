@@ -5,7 +5,7 @@
 .aboutFirstSection {
   background-color: white;
   width: 100%;
-  height: calc(110vh - 90px);
+  height: calc(145vh - 90px);
   color: black;
 }
 
@@ -20,12 +20,19 @@
 }
 
 .aboutFirstSection .aboutCards {
-    padding-top: 100px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding-top: 100px;
+  }
+  
+  @media (max-width: 1024px) {
+    .aboutFirstSection .aboutCards {
+      justify-content: center;
+    }
+  }
 
 .aboutSecondSection {
     width: 100%;
@@ -38,11 +45,11 @@
 
 .aboutSecondSection .text .title {
     font-size: 50px;
-    padding-top: 12.5%;
+    padding-top: 13%;
     text-align: left;
     font-weight: 600;
 }
 
 .aboutSecondSection .text .title span {
-    color: #FF6B00;
+    color: #137547;
 }
