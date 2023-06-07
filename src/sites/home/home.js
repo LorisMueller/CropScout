@@ -29,9 +29,8 @@ function Home() {
     {
       title: 'Rights',
       links: [
-        { label: 'Legal Aspects', link: '/aspects' },
+        { label: 'Data privacy notice', link: '/aspects' },
         { label: 'Imprint', link: '/imprints' },
-        { label: 'Other rights', link: '/rights' },
       ],
     },
   ];
