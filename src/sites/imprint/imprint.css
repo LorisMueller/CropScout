@@ -1,7 +1,7 @@
 .aspectContent {
     color: white;
     width: 50%;
-    height: calc(100vh);
+    height: 100vh;
     display: flex;
     overflow: hidden;
     justify-content: center;

@@ -7,10 +7,11 @@ import Contact from './sites/contact/contact.js';
 import Gallery from './sites/gallery/gallery';
 import Aspects from './sites/aspects/aspects';
 import Imprint from './sites/imprint/imprint';
+import Cloud from './sites/cloud/cloud';
+import CloudGallery from './sites/cloudGallery/cloudGallery';
 
 function App() {
   return (
-    //<Home/>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />}></Route>
@@ -19,6 +20,8 @@ function App() {
       <Route path="/gallery" element={<Gallery />}></Route>
       <Route path='/aspects' element={<Aspects />}></Route>
       <Route path='/imprints' element={<Imprint />}></Route>
+      <Route path='/cloud' element={<Cloud />}></Route>
+      <Route path='/cloudGallery' element={<CloudGallery />}></Route>
     </Routes>
   </BrowserRouter>
   );

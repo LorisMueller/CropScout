@@ -16,8 +16,8 @@ function Aspects() {
                     Farming Street 23<br></br>
                     Zürich, Switzerland<br></br><br></br>
 
-                    <strong>Phone:</strong> +1 (123) 456-7890<br></br>
-                    <strong>Email:</strong> info@cropscout.com<br></br><br></br>
+                    <strong>Phone:</strong> +41 79 123 45 67<br></br>
+                    <strong>Email:</strong> info@cropscout.ch<br></br><br></br>
 
                     <strong>Managing Director:</strong> Loris Mueller<br></br><br></br>
 
