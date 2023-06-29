@@ -1,9 +1,13 @@
 import './cloud.css';
 import Navbar from '../../components/navbar/navbar';
 import { FooterLinks } from '../../components/footer/footer.tsx';
-import { useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Button, Input } from '@mantine/core';
+import PhotoAlbum from "react-photo-album";
+import CropEdited from '../../images/Gallery/edited/crop_edited.png';
+import fieldOverviewSecond from '../../images/Gallery/edited/field_overview_second_edited.png';
+import DroneFrontSecond from '../../images/Gallery/edited/drone_front_second_edited.png';
+import DroneCrop from '../../images/Gallery/edited/drone_crop_edited.png';
 
 function Cloud() {
 
@@ -26,9 +30,33 @@ function Cloud() {
         },
     ];
 
+    const tests = [
+        {
+            src: CropEdited,
+            width: 4,
+            height: 6
+        },
+        {
+            src: fieldOverviewSecond,
+            width: 4,
+            height: 3
+        },
+        {
+            src: DroneCrop,
+            width: 5,
+            height: 3
+        },
+        {
+            src: DroneFrontSecond,
+            width: 3,
+            height: 2
+        },
+    ]
+
     const [uploadFiles, setUploadFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
     const [cloudinaryImages, setCloudinaryImages] = useState([]);
+    const [photos, setPhotos] = useState([]);
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -75,6 +103,9 @@ function Cloud() {
         }
     };
 
+    useEffect(() => {
+    }, []);
+
     return (
         <div>
             <link rel="preconnect" href="https://fonts.googleapis.com"></link>
@@ -110,6 +141,11 @@ function Cloud() {
 
                         </div>
                     </form>
+                </div>
+                <div className='cloudSecondSection'>
+                    {/* <PhotoAlbum layout="rows" photos={photos} />
+                    {photos.toString()} */}
+                    <PhotoAlbum layout="rows" photos={tests}></PhotoAlbum>
                 </div>
             </div>
             <FooterLinks data={footerData} />

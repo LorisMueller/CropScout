@@ -1,8 +1,16 @@
 import './cloudGallery.css';
 import Navbar from '../../components/navbar/navbar';
 import { FooterLinks } from '../../components/footer/footer.tsx';
+import { useState } from 'react';
+import PhotoAlbum from "react-photo-album";
+import CropEdited from '../../images/Gallery/edited/crop_edited.png';
+import fieldOverviewSecond from '../../images/Gallery/edited/field_overview_second_edited.png';
+import { useEffect } from 'react';
+import { Gallery } from "react-grid-gallery";
 
 function CloudGallery() {
+
+    const [photos, setPhotos] = useState([]);
 
     const footerData = [
         {
@@ -23,14 +31,49 @@ function CloudGallery() {
         },
     ];
 
+    const tests = [
+        {
+            src: CropEdited,
+            width: 400,
+            height: 600
+        },
+        {
+            src: fieldOverviewSecond,
+            width: 400,
+            height: 300
+        },
+    ]
+
+    useEffect(() => {
+        const getImages = async () => {
+          try {
+            const response = await fetch('https://api.cloudinary.com/v1_1/dvkbnbief/resources/image', {
+              headers: {
+                Authorization: 'Basic ' + btoa('843457659483174:Mbhwv-o2cqY-fI1RuOk844cCggE'),
+              },
+              method: 'GET',
+            });
+            const data = await response.json();
+            let images1 = data.resources.map((image) => ({
+              src: image.url,
+              width: image.width,
+              height: image.height,
+            }));
+            console.log(images1);
+            setPhotos(images1);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        getImages();
+      }, []);
+      console.log(photos);
     return (
         <div>
-            <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"></link>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet"></link>
-            <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet"></link>
             <Navbar />
-            <div className='content'>
+            <div className='content-cloudGallery'>
+                <PhotoAlbum layout="rows" photos={tests} />
+                <Gallery images={tests} />
             </div>
             <FooterLinks data={footerData} />
         </div>

@@ -9,21 +9,23 @@ import Aspects from './sites/aspects/aspects';
 import Imprint from './sites/imprint/imprint';
 import Cloud from './sites/cloud/cloud';
 import CloudGallery from './sites/cloudGallery/cloudGallery';
+import Cloudinary from './sites/Cloudinary/cloudinary';
 
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />}></Route>
-      <Route path="/about" element={<AboutUs />}></Route>
-      <Route path="/contact" element={<Contact />}></Route>
-      <Route path="/gallery" element={<Gallery />}></Route>
-      <Route path='/aspects' element={<Aspects />}></Route>
-      <Route path='/imprints' element={<Imprint />}></Route>
-      <Route path='/cloud' element={<Cloud />}></Route>
-      <Route path='/cloudGallery' element={<CloudGallery />}></Route>
-    </Routes>
-  </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<AboutUs />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/gallery" element={<Gallery />}></Route>
+        <Route path='/aspects' element={<Aspects />}></Route>
+        <Route path='/imprints' element={<Imprint />}></Route>
+        <Route path='/cloud' element={<Cloud />}></Route>
+        <Route path='/cloudGallery' element={<CloudGallery />}></Route>
+        <Route path='/cloudinary' element={<Cloudinary />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
