@@ -2,12 +2,9 @@ import './cloud.css';
 import Navbar from '../../components/navbar/navbar';
 import { FooterLinks } from '../../components/footer/footer.tsx';
 import { useState, useEffect } from 'react';
-import { Button, Input } from '@mantine/core';
-import PhotoAlbum from "react-photo-album";
-import CropEdited from '../../images/Gallery/edited/crop_edited.png';
-import fieldOverviewSecond from '../../images/Gallery/edited/field_overview_second_edited.png';
-import DroneFrontSecond from '../../images/Gallery/edited/drone_front_second_edited.png';
-import DroneCrop from '../../images/Gallery/edited/drone_crop_edited.png';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Button, Group } from '@mantine/core';
+
 
 function Cloud() {
 
@@ -29,29 +26,6 @@ function Cloud() {
             ],
         },
     ];
-
-    const tests = [
-        {
-            src: CropEdited,
-            width: 4,
-            height: 6
-        },
-        {
-            src: fieldOverviewSecond,
-            width: 4,
-            height: 3
-        },
-        {
-            src: DroneCrop,
-            width: 5,
-            height: 3
-        },
-        {
-            src: DroneFrontSecond,
-            width: 3,
-            height: 2
-        },
-    ]
 
     const [uploadFiles, setUploadFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
@@ -80,23 +54,108 @@ function Cloud() {
         e.preventDefault();
         console.log(uploadFiles);
 
-        try {
-            const formData = new FormData();
-            for (let i = 0; i < uploadFiles.length; i++) {
-                formData.append('file', uploadFiles[i]);
-                formData.append('upload_preset', 'test_upload');
-                formData.append('cloud_name', 'dvkbnbief');
 
-                const response = await fetch(
-                    'https://api.cloudinary.com/v1_1/dvkbnbief/image/upload',
+        try {
+            const formDataPNG = new FormData();
+            const formDataJPG = new FormData();
+
+            for (let i = 0; i < uploadFiles.length; i++) {
+                formDataPNG.append('file', uploadFiles[i]);
+                formDataJPG.append('file', uploadFiles[i]);
+                formDataPNG.append('upload_preset', 'test_upload');
+                formDataJPG.append('upload_preset', 'test_upload_jpg');
+                formDataPNG.append('cloud_name', 'dvkbnbief');
+                formDataJPG.append('cloud_name', 'dvkbnbief');
+
+                const responsePNG = fetch(
+                    'https://api.cloudinary.com/v1_1/dvkbnbief/image/upload?folder=png',
                     {
                         method: 'POST',
-                        body: formData,
+                        body: formDataPNG,
                     }
                 );
 
-                const data = await response.json();
-                setCloudinaryImages((prevImages) => [...prevImages, data.secure_url]);
+                const responseJPG = fetch(
+                    'https://api.cloudinary.com/v1_1/dvkbnbief/image/upload?folder=jpg',
+                    {
+                        method: 'POST',
+                        body: formDataJPG,
+                    }
+                );
+
+                const [dataPNG, dataJPG] = await Promise.all([responsePNG, responseJPG]);
+                const jsonDataPNG = await dataPNG.json();
+                const jsonDataJPG = await dataJPG.json();
+                setCloudinaryImages((prevImages) => [
+                    ...prevImages,
+                    jsonDataPNG.secure_url,
+                    jsonDataJPG.secure_url,
+                ]);
+                close();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleUpload_png = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formDataPNG = new FormData();
+
+            for (let i = 0; i < uploadFiles.length; i++) {
+                formDataPNG.append('file', uploadFiles[i]);
+                formDataPNG.append('upload_preset', 'test_upload');
+                formDataPNG.append('cloud_name', 'dvkbnbief');
+
+                const responsePNG = fetch(
+                    'https://api.cloudinary.com/v1_1/dvkbnbief/image/upload?folder=png',
+                    {
+                        method: 'POST',
+                        body: formDataPNG,
+                    }
+                );
+
+                const [dataPNG] = await Promise.all([responsePNG]);
+                const jsonDataPNG = await dataPNG.json();
+                setCloudinaryImages((prevImages) => [
+                    ...prevImages,
+                    jsonDataPNG.secure_url,
+                ]);
+                close();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleUpload_jpg = async (e) => {
+        e.preventDefault();
+
+        try {
+            const formDataJPG = new FormData();
+
+            for (let i = 0; i < uploadFiles.length; i++) {
+                formDataJPG.append('file', uploadFiles[i]);
+                formDataJPG.append('upload_preset', 'test_upload_jpg');
+                formDataJPG.append('cloud_name', 'dvkbnbief');
+
+                const responseJPG = fetch(
+                    'https://api.cloudinary.com/v1_1/dvkbnbief/image/upload?folder=jpg',
+                    {
+                        method: 'POST',
+                        body: formDataJPG,
+                    }
+                );
+
+                const [dataJPG] = await Promise.all([responseJPG]);
+                const jsonDataJPG = await dataJPG.json();
+                setCloudinaryImages((prevImages) => [
+                    ...prevImages,
+                    jsonDataJPG.secure_url,
+                ]);
+                close();
             }
         } catch (error) {
             console.log(error);
@@ -105,6 +164,8 @@ function Cloud() {
 
     useEffect(() => {
     }, []);
+
+    const [opened, { open, close }] = useDisclosure(false);
 
     return (
         <div>
@@ -128,7 +189,7 @@ function Cloud() {
                                     className="mantine-button"
                                     onClick={() => document.getElementById('file-input').click()}
                                 >
-                                    Select Files
+                                    Select Images
                                 </Button>
                                 <input
                                     id="file-input"
@@ -136,16 +197,31 @@ function Cloud() {
                                     multiple
                                     onChange={(e) => setUploadFiles([...uploadFiles, ...e.target.files])}
                                 />
-                                <Button onClick={handleUpload}>Upload Files</Button>
-                            </div>
 
+                                <Modal opened={opened} onClose={close} title="Uploading your Pictures" centered>
+                                    <div className="modal-content">
+                                        <div className="modal-body">
+                                            <div className="modal-text">
+                                                <h3>Upload your Pictures</h3>
+                                                <p>You can store the pictures either as png, jpg or both</p>
+                                            </div>
+                                            <div className="modal-buttons">
+                                                <Button onClick={handleUpload}>JPG and PNG</Button>
+                                                <Button onClick={handleUpload_png}>Only PNG</Button>
+                                                <Button onClick={handleUpload_jpg}>Only JPG</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Modal>
+                                <Group position="center">
+                                    <Button onClick={open}>Upload Images</Button>
+                                </Group>
+                            </div>
+                        </div>
+                        <div className="gallery-button">
+                            <a href="/cloudinary"><Button>View your uploaded Pictures</Button></a>
                         </div>
                     </form>
-                </div>
-                <div className='cloudSecondSection'>
-                    {/* <PhotoAlbum layout="rows" photos={photos} />
-                    {photos.toString()} */}
-                    <PhotoAlbum layout="rows" photos={tests}></PhotoAlbum>
                 </div>
             </div>
             <FooterLinks data={footerData} />
