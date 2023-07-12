@@ -54,8 +54,8 @@ function Cloud() {
         e.preventDefault();
         console.log(uploadFiles);
 
-
         try {
+            const uploadPromises = [];
             const formDataPNG = new FormData();
             const formDataJPG = new FormData();
 
@@ -83,28 +83,36 @@ function Cloud() {
                     }
                 );
 
-                const [dataPNG, dataJPG] = await Promise.all([responsePNG, responseJPG]);
-                const jsonDataPNG = await dataPNG.json();
-                const jsonDataJPG = await dataJPG.json();
-                setCloudinaryImages((prevImages) => [
-                    ...prevImages,
-                    jsonDataPNG.secure_url,
-                    jsonDataJPG.secure_url,
-                ]);
-                close();
+                uploadPromises.push(responsePNG, responseJPG);
             }
+
+            const responses = await Promise.all(uploadPromises);
+            const jsonDataArray = await Promise.all(responses.map((response) => response.json()));
+            const imageUrls = jsonDataArray.reduce(
+                (urls, jsonData) => {
+                    urls.png.push(jsonData.secure_url);
+                    urls.jpg.push(jsonData.secure_url);
+                    return urls;
+                },
+                { png: [], jpg: [] }
+            );
+
+            setCloudinaryImages((prevImages) => [...prevImages, ...imageUrls.png, ...imageUrls.jpg]);
+            close();
         } catch (error) {
             console.log(error);
         }
     };
 
+
     const handleUpload_png = async (e) => {
         e.preventDefault();
 
         try {
-            const formDataPNG = new FormData();
+            const uploadPromises = [];
 
             for (let i = 0; i < uploadFiles.length; i++) {
+                const formDataPNG = new FormData();
                 formDataPNG.append('file', uploadFiles[i]);
                 formDataPNG.append('upload_preset', 'test_upload');
                 formDataPNG.append('cloud_name', 'dvkbnbief');
@@ -117,14 +125,15 @@ function Cloud() {
                     }
                 );
 
-                const [dataPNG] = await Promise.all([responsePNG]);
-                const jsonDataPNG = await dataPNG.json();
-                setCloudinaryImages((prevImages) => [
-                    ...prevImages,
-                    jsonDataPNG.secure_url,
-                ]);
-                close();
+                uploadPromises.push(responsePNG);
             }
+
+            const responses = await Promise.all(uploadPromises);
+            const jsonDataArray = await Promise.all(responses.map((response) => response.json()));
+            const imageUrls = jsonDataArray.map((jsonData) => jsonData.secure_url);
+
+            setCloudinaryImages((prevImages) => [...prevImages, ...imageUrls]);
+            close();
         } catch (error) {
             console.log(error);
         }
@@ -134,9 +143,10 @@ function Cloud() {
         e.preventDefault();
 
         try {
-            const formDataJPG = new FormData();
+            const uploadPromises = [];
 
             for (let i = 0; i < uploadFiles.length; i++) {
+                const formDataJPG = new FormData();
                 formDataJPG.append('file', uploadFiles[i]);
                 formDataJPG.append('upload_preset', 'test_upload_jpg');
                 formDataJPG.append('cloud_name', 'dvkbnbief');
@@ -149,21 +159,19 @@ function Cloud() {
                     }
                 );
 
-                const [dataJPG] = await Promise.all([responseJPG]);
-                const jsonDataJPG = await dataJPG.json();
-                setCloudinaryImages((prevImages) => [
-                    ...prevImages,
-                    jsonDataJPG.secure_url,
-                ]);
-                close();
+                uploadPromises.push(responseJPG);
             }
+
+            const responses = await Promise.all(uploadPromises);
+            const jsonDataArray = await Promise.all(responses.map((response) => response.json()));
+            const imageUrls = jsonDataArray.map((jsonData) => jsonData.secure_url);
+
+            setCloudinaryImages((prevImages) => [...prevImages, ...imageUrls]);
+            close();
         } catch (error) {
             console.log(error);
         }
     };
-
-    useEffect(() => {
-    }, []);
 
     const [opened, { open, close }] = useDisclosure(false);
 
