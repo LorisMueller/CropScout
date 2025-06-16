@@ -126,8 +126,8 @@ function Gallery() {
           </div>
           <div className='galleryImageSlider'>
             <ImgComparisonSlider>
-              <img slot="first" src={DroneFuture} className='sliderImage' />
-              <img slot="second" src={DroneFront} className='sliderImage' />
+              <img slot="first" src={DroneFuture} className='sliderImage' alt='-' />
+              <img slot="second" src={DroneFront} className='sliderImage' alt='-'/>
             </ImgComparisonSlider>
           </div>
         </div>
@@ -145,14 +145,14 @@ function Gallery() {
           </div>
           <div className='galleryImageSlider'>
             <ImgComparisonSlider>
-              <img slot="first" src={DronePilot} className='sliderImage' />
-              <img slot="second" src={DronePilotClean} className='sliderImage' />
+              <img slot="first" src={DronePilot} className='sliderImage' alt='-'/>
+              <img slot="second" src={DronePilotClean} className='sliderImage' alt='-'/>
             </ImgComparisonSlider>
           </div>
           <div className='galleryImageSlider'>
             <ImgComparisonSlider>
-              <img slot="first" src={FieldOverviewBlack} className='sliderImage' />
-              <img slot="second" src={FieldOverviewColorBlack} className='sliderImage' />
+              <img slot="first" src={FieldOverviewBlack} className='sliderImage' alt='-'/>
+              <img slot="second" src={FieldOverviewColorBlack} className='sliderImage' alt='-'/>
             </ImgComparisonSlider>
           </div>
         </div>

@@ -6,7 +6,7 @@ import Drone from '../../images/drone_title.png';
 import DronePortrait from '../../images/drone_portrait.jpg';
 import DronePilot from '../../images/drone_pilot.jpg';
 import DroneOverview from '../../images/drone_overview.jpg';
-import { Button, MantineProvider, Card } from '@mantine/core';
+import { Button, MantineProvider } from '@mantine/core';
 import LongCard from '../../components/mantine/longCard.js/longCard';
 import { FeaturesCards } from '../../components/featureCards/featureCards';
 

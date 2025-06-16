@@ -1,4 +1,3 @@
-import { IconUserStar } from '@tabler/icons-react';
 import React from 'react';
 import {
   Card,

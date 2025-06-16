@@ -1,7 +1,7 @@
 import './cloud.css';
 import Navbar from '../../components/navbar/navbar';
 import { FooterLinks } from '../../components/footer/footer.tsx';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button, Group } from '@mantine/core';
 
@@ -30,7 +30,6 @@ function Cloud() {
     const [uploadFiles, setUploadFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
     const [cloudinaryImages, setCloudinaryImages] = useState([]);
-    const [photos, setPhotos] = useState([]);
 
     const handleDragOver = (e) => {
         e.preventDefault();
