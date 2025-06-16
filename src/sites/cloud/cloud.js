@@ -29,7 +29,6 @@ function Cloud() {
 
     const [uploadFiles, setUploadFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
-    const [cloudinaryImages, setCloudinaryImages] = useState([]);
 
     const handleDragOver = (e) => {
         e.preventDefault();
@@ -85,18 +84,6 @@ function Cloud() {
                 uploadPromises.push(responsePNG, responseJPG);
             }
 
-            const responses = await Promise.all(uploadPromises);
-            const jsonDataArray = await Promise.all(responses.map((response) => response.json()));
-            const imageUrls = jsonDataArray.reduce(
-                (urls, jsonData) => {
-                    urls.png.push(jsonData.secure_url);
-                    urls.jpg.push(jsonData.secure_url);
-                    return urls;
-                },
-                { png: [], jpg: [] }
-            );
-
-            setCloudinaryImages((prevImages) => [...prevImages, ...imageUrls.png, ...imageUrls.jpg]);
             close();
         } catch (error) {
             console.log(error);
@@ -126,12 +113,6 @@ function Cloud() {
 
                 uploadPromises.push(responsePNG);
             }
-
-            const responses = await Promise.all(uploadPromises);
-            const jsonDataArray = await Promise.all(responses.map((response) => response.json()));
-            const imageUrls = jsonDataArray.map((jsonData) => jsonData.secure_url);
-
-            setCloudinaryImages((prevImages) => [...prevImages, ...imageUrls]);
             close();
         } catch (error) {
             console.log(error);
@@ -161,11 +142,6 @@ function Cloud() {
                 uploadPromises.push(responseJPG);
             }
 
-            const responses = await Promise.all(uploadPromises);
-            const jsonDataArray = await Promise.all(responses.map((response) => response.json()));
-            const imageUrls = jsonDataArray.map((jsonData) => jsonData.secure_url);
-
-            setCloudinaryImages((prevImages) => [...prevImages, ...imageUrls]);
             close();
         } catch (error) {
             console.log(error);
