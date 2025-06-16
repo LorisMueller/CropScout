@@ -1,0 +1,8 @@
+.content-cloudGallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200vh;
+    background-color: black;
+    color: white;
+} 

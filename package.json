@@ -3,11 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@headlessui/react": "^1.7.15",
+    "@img-comparison-slider/react": "^8.0.0",
+    "@mantine/carousel": "^6.0.13",
+    "@mantine/core": "^6.0.13",
+    "@mantine/dates": "^6.0.13",
+    "@mantine/dropzone": "^6.0.13",
+    "@mantine/form": "^6.0.13",
+    "@mantine/hooks": "^6.0.13",
+    "@mantine/modals": "^6.0.13",
+    "@mantine/nprogress": "^6.0.13",
+    "@mantine/spotlight": "^6.0.13",
+    "@tabler/icons-react": "^2.20.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "cloudinary-react": "^1.8.1",
+    "dayjs": "^1.11.7",
+    "embla-carousel-react": "^7.1.0",
+    "img-comparison-slider": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-grid-gallery": "^1.0.0",
+    "react-image-gallery": "^1.2.11",
+    "react-modal": "^3.16.1",
+    "react-photo-album": "^2.2.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -34,5 +56,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@mantine/ds": "^6.0.13",
+    "react-router-dom": "^6.11.2"
   }
 }
